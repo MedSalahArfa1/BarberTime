@@ -89,7 +89,7 @@
 
         /* Custom class for iframe */
         .custom-map {
-            position: absolute;
+            position: relative;
             top: 0;
             left: 0;
             width: 100%;
@@ -98,7 +98,9 @@
 
         /* Media query for smaller screens */
         @media (max-width: 768px) {
-            .custom-map-container {
+
+            .custom-map{
+                height: 400px;
             }
         }
 
@@ -224,7 +226,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <div class="h-100 custom-map-container" style="border: 0;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d533.8269618355894!2d10.125300600495311!3d37.21782499838471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2e900656954a3%3A0x9a9cf12e7c2280f8!2sPYRAMIDE!5e1!3m2!1sfr!2stn!4v1720629554568!5m2!1sfr!2stn" width="600" height="374" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    
+                        <iframe class="custom-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d533.8269618355894!2d10.125300600495311!3d37.21782499838471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2e900656954a3%3A0x9a9cf12e7c2280f8!2sPYRAMIDE!5e1!3m2!1sfr!2stn!4v1720629554568!5m2!1sfr!2stn" width="600" height="374" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    
                     </div>
                 </div>
             </div>
