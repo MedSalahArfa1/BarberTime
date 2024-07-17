@@ -30,6 +30,10 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js"></script>
+
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function(){
@@ -166,7 +170,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="phone" class="form-control bg-transparent" id="phone" name="phone" placeholder="Your Phone Number" required>
+                                        <input type="text" class="form-control bg-transparent" id="phone" name="phone" placeholder="Your Phone Number" required>
                                         <label for="phone">Your Phone Number</label>
                                     </div>
                                 </div>
@@ -306,8 +310,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <script src="js/appointment.js"></script>
+    <script src="js/main.js"></script>*
+    <script type="module" src="js/appointment.js"></script>
+
 </body>
 
 </html>

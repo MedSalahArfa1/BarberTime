@@ -1,3 +1,21 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDSUTtON3EZKPfdZR0qRaygngWEes-K9fs",
+  authDomain: "barbertime-49a58.firebaseapp.com",
+  projectId: "barbertime-49a58",
+  storageBucket: "barbertime-49a58.appspot.com",
+  messagingSenderId: "64092814528",
+  appId: "1:64092814528:web:a8bd44924e54e6cef68125"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('reservationForm');
     const customerName = document.getElementById('customerName');
@@ -7,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
     const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        
+
         const name = form.name.value;
         const phone = form.phone.value;
         const date = form.date.value;
@@ -37,6 +55,28 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessage.textContent = 'Reservations cannot be made on Mondays. Please select another date.';
             errorModal.show();
             return; // Prevent form submission
+        }
+
+        try {
+            const reservationsQuery = query(collection(db, 'reservations'), where('date', '==', date), where('time', '==', time));
+            const querySnapshot = await getDocs(reservationsQuery);
+
+            if (!querySnapshot.empty) {
+                errorMessage.textContent = 'Reservation Conflict !';
+                errorModal.show();
+                return;
+            } else {
+                await addDoc(collection(db, 'reservations'), {
+                    name,
+                    phone,
+                    date,
+                    time
+                });
+                confirmationModal.show();
+            }
+        } catch (error) {
+            console.error('Error adding reservation: ', error);
+            alert('Error adding reservation');
         }
 
         // Send email using EmailJS
